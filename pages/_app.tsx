@@ -12,6 +12,7 @@ import createEmotionCache from '../utils/createEmotionCache'
 import darkThemeOptions from '../styles/theme/darkThemeOptions'
 import '../styles/globals.css'
 import Head from 'next/head'
+import Header from '../components/Header'
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache
 }
@@ -32,6 +33,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <CssBaseline />
+        <Header />
         <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>
