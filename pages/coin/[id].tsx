@@ -22,7 +22,7 @@ export default function CoinPage() {
         }}
       >
         <h1>
-          {name}
+          {name || <Skeleton variant="text" width={100} />}
           {isLoading && <CircularProgress size={20} color="secondary" />}
         </h1>
         <DaySelector days={days} setDays={setDays} />

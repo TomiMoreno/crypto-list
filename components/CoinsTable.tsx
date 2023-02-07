@@ -11,20 +11,27 @@ import {
   Skeleton,
   Typography,
   Link,
+  TablePagination,
 } from '@mui/material'
 import { useGetCoins } from '../hooks/useGetCoins'
 import Image from 'next/image'
 import NextLink from 'next/link'
 
 export default function BasicTable() {
-  const { coins, isLoading } = useGetCoins()
+  const { coins, setPagination, pagination } = useGetCoins()
   const formatter = new Intl.NumberFormat('en', {
     style: 'currency',
     currency: 'USD',
     notation: 'compact',
   })
+  const handlePageChange = (e: unknown, page: number) => {
+    setPagination((prev) => ({ ...prev, page }))
+  }
 
-  if (isLoading) return <Skeleton sx={{ height: 600, width: '100%' }} />
+  const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPagination((prev) => ({ ...prev, perPage: Number(e.target.value) }))
+  }
+  if (!coins?.length) return <Skeleton sx={{ height: 600, width: '100%' }} />
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader sx={{ minWidth: 650 }} aria-label="Coins Table">
@@ -79,7 +86,16 @@ export default function BasicTable() {
               </TableCell>
             </TableRow>
           ))}
-        </TableBody>
+          <TablePagination
+            rowsPerPageOptions={[10, 25]}
+            component="div"
+            count={300}
+            rowsPerPage={pagination.perPage}
+            page={pagination.page}
+            onPageChange={handlePageChange}
+            onRowsPerPageChange={handleRowsPerPageChange}
+          />
+        </TableBody> 
       </Table>
     </TableContainer>
   )
