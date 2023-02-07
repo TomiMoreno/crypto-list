@@ -34,5 +34,5 @@ export const useCoinGraph = (id?: string, days = 1) => {
     volume: graphData?.total_volumes[i][1],
   }))
 
-  return { name: coin?.name || id, chart: formattedChart, isLoading, error }
+  return { name: coin?.name, chart: formattedChart, isLoading, error }
 }
