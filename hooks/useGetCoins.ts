@@ -31,17 +31,17 @@ export const useGetCoins = (params: CoinListParams = defaultParams) => {
   const [coins, setCoins] = useState<AssetData[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [pagination, setPagination] = useState<{
-    page:number,
-    perPage:number}>({
+    page: number
+    perPage: number
+  }>({
     page: 0,
     perPage: 10,
   })
-  
 
   const formatPagination = useCallback(() => {
     const { page, perPage } = pagination
     return {
-      page: (page+1).toString(),
+      page: (page + 1).toString(),
       per_page: perPage.toString(),
     }
   }, [pagination])
@@ -49,7 +49,10 @@ export const useGetCoins = (params: CoinListParams = defaultParams) => {
     try {
       setIsLoading(true)
       const url = new URL('https://api.coingecko.com/api/v3/coins/markets')
-      const searchParams = new URLSearchParams({...params, ...formatPagination()})
+      const searchParams = new URLSearchParams({
+        ...params,
+        ...formatPagination(),
+      })
       url.search = searchParams.toString()
       const coins = await fetch(url.toString()).then((res) => res.json())
 

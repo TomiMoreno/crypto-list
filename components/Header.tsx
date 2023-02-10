@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { Box, Typography, Link } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 export default function Header() {
   return (
@@ -14,13 +14,10 @@ export default function Header() {
         borderBottom: '1px solid #e0e0e0',
       }}
     >
-      <Typography variant="h5" component="h1">
-        Crypto List
-      </Typography>
       <NextLink href="/" passHref>
-        <Link variant="body1" color="inherit">
-          Home
-        </Link>
+        <Typography variant="h5" component="a">
+          Crypto List
+        </Typography>
       </NextLink>
     </Box>
   )

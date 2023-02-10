@@ -95,7 +95,7 @@ export default function BasicTable() {
             onPageChange={handlePageChange}
             onRowsPerPageChange={handleRowsPerPageChange}
           />
-        </TableBody> 
+        </TableBody>
       </Table>
     </TableContainer>
   )
